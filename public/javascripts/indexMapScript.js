@@ -1,6 +1,7 @@
 // TO MAKE THE MAP APPEAR YOU MUST
 // ADD YOUR ACCESS TOKEN FROM
 // https://account.mapbox.com
+const mapbox_token = process.env.MAPBOX_TOKEN;
 mapboxgl.accessToken = mapbox_token;
 const map = new mapboxgl.Map({
 	container: "map",
@@ -115,8 +116,8 @@ map.on("load", () => {
 			.setHTML(
 				`<h6><a href="${url}">${title}</a></h6><p>${location} </p>
                 <p class="starability-result" data-rating="${
-                    rating != undefined ? rating : 0
-                }"></p> `
+									rating != undefined ? rating : 0
+								}"></p> `
 			)
 			.addTo(map);
 	});
