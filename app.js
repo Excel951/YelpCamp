@@ -39,6 +39,10 @@ const wrapExpressErrorHandler = require("./utils/wrapExpressErrorHandler"),
 	ExpressError = require("./utils/ExpressError");
 // =================================================================
 
+const app = express();
+
+const port = process.env.PORT || 3000;
+
 // PREPARE DB
 // =================================================================
 const dbUrl = process.env.DB_URL;
@@ -47,6 +51,10 @@ mongoose
 	.connect(dbUrl)
 	.then(() => {
 		console.log("Database opened");
+
+		app.listen(port, () => {
+			console.log(`listening on port ${port}`);
+		});
 	})
 	.catch((err) => {
 		console.log(`Connection error on open: ${err}`);
@@ -58,8 +66,6 @@ db.once("open", () => {
 	console.log("Database connected");
 });
 // =================================================================
-
-const app = express();
 
 // SETTING EXPRESS-SESSION
 // =================================================================
@@ -173,12 +179,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 app.use("/", authRoutes);
 // =================================================================
-
-const port = 3000;
-
-app.listen(port, () => {
-	console.log(`listening on port ${port}`);
-});
 
 app.get("/", (req, res) => {
 	res.render("home", { title: "Home of YelpCamp" });
