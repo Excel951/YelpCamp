@@ -1,0 +1,11 @@
+@import "./stars.css";
+
+.starability-result {
+  $star-count-result: $star-count - 1;
+  @while $star-count-result > 0 {
+    &[data-rating="#{$star-count-result}.5"]::after {
+      width: $star-count-result * $star-size + $star-size / 2;
+    }
+    $star-count-result: $star-count-result - 1;
+  }
+}

@@ -1,0 +1,99 @@
+<!-- <%- include("../partials/head") %> -->
+<%- layout('layouts/boilerplate') %>
+<div class="row">
+	<h1 class="text-center mb-5">New Campground</h1>
+	<div class="col-6 offset-3">
+		<form
+			action="/campgrounds"
+			method="post"
+			class="needs-validation"
+			enctype="multipart/form-data"
+			novalidate>
+			<div class="mb-3 form-floating">
+				<input
+					type="text"
+					class="form-control"
+					name="campgrounds[title]"
+					id="title"
+					placeholder="Name of Campgrounds"
+					required />
+				<label for="title">Title</label>
+				<div class="invalid-feedback">Title must be filled in</div>
+			</div>
+			<div class="mb-3 form-floating">
+				<input
+					type="text"
+					name="campgrounds[location]"
+					class="form-control"
+					id="location"
+					placeholder="Where Campground located"
+					required />
+				<label for="location">Location</label>
+				<div class="invalid-feedback">Location must be filled in</div>
+			</div>
+			<div class="mb-3">
+				<div class="input-group has-validation">
+					<span
+						class="input-group-text"
+						id="price-label"
+						>$</span
+					>
+					<div class="form-floating">
+						<input
+							type="text"
+							class="form-control"
+							id="price"
+							name="campgrounds[price]"
+							placeholder="0"
+							aria-label="0"
+							aria-describedby="price-label"
+							required />
+						<label for="price">Campground Price</label>
+					</div>
+					<div class="invalid-feedback">Price must be filled in</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label
+					for="image"
+					class="form-label"
+					>Image</label
+				>
+				<input
+					type="file"
+					name="campgrounds[image]"
+					class="form-control"
+					id="image"
+					placeholder="Image"
+					required
+					multiple />
+				<div class="invalid-feedback">Image must be filled in</div>
+			</div>
+			<div class="mb-3 form-floating">
+				<textarea
+					type="text"
+					name="campgrounds[description]"
+					class="form-control"
+					id="description"
+					placeholder="Description of the Campground"
+					rows="5"
+					cols="30"
+					style="height: 12rem;"
+					required></textarea>
+				<label for="description">Description</label>
+				<div class="invalid-feedback">Description must be filled in</div>
+			</div>
+
+			<button
+				class="btn btn-success"
+				type="submit">
+				Add Campgrounds
+			</button>
+		</form>
+		<a
+			href="/campgrounds"
+			class="btn btn-danger"
+			>Cancel
+		</a>
+	</div>
+</div>

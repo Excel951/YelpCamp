@@ -1,0 +1,67 @@
+<%- layout('layouts/boilerplate') %>
+
+<div class="container justify-content-center align-items-center mt-5">
+	<div class="row">
+		<div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="card-title text-center">Register</h5>
+					<form
+						action="/register"
+						method="post"
+						class="needs-validation"
+						novalidate>
+						<div class="mb-3">
+							<label
+								for="email"
+								class="form-label"
+								>Email</label
+							>
+							<input
+								type="email"
+								class="form-control"
+								name="auth[email]"
+								placeholder="Enter your email address"
+								id="email"
+								required
+								autofocus />
+							<div class="invalid-feedback">Email must be filled in</div>
+						</div>
+						<div class="mb-3">
+							<label
+								for="username"
+								class="form-label"
+								>Username</label
+							>
+							<input
+								type="text"
+								name="auth[username]"
+								class="form-control"
+								id="username"
+								required />
+							<div class="invalid-feedback">Username must be filled in</div>
+						</div>
+						<div class="mb-3">
+							<label
+								for="password"
+								class="form-label"
+								>Password</label
+							>
+							<input
+								type="password"
+								name="password"
+								class="form-control"
+								id="password"
+								required />
+							<div class="invalid-feedback">Password must be filled in</div>
+						</div>
+
+						<div class="d-grid">
+							<button class="btn btn-info">Register Account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

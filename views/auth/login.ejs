@@ -1,0 +1,52 @@
+<%- layout('layouts/boilerplate') %>
+
+<div class="container justify-content-center align-items-center mt-5">
+	<div class="row">
+		<div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="card-title text-center">Login</h5>
+					<form
+						action="/login"
+						method="post"
+						class="needs-validation"
+						novalidate>
+						<div class="mb-3">
+							<label
+								for="username"
+								class="form-label"
+								>Username</label
+							>
+							<input
+								type="text"
+								name="username"
+								class="form-control"
+								id="username"
+								required
+								autofocus />
+							<div class="invalid-feedback">Username must be filled in</div>
+						</div>
+						<div class="mb-3">
+							<label
+								for="password"
+								class="form-label"
+								>Password</label
+							>
+							<input
+								type="password"
+								name="password"
+								class="form-control"
+								id="password"
+								required />
+							<div class="invalid-feedback">Password must be filled in</div>
+						</div>
+
+						<div class="d-grid gap-2 col-12 mx-auto">
+							<button class="btn btn-success">Login</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

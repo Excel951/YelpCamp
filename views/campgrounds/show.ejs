@@ -1,0 +1,94 @@
+<%- layout('layouts/boilerplate') %>
+
+<div class="row">
+	<div class="col-6">
+		<div class="card mb-3">
+			<div
+				class="carousel slide carousel-fade"
+				data-bs-ride="true"
+				id="carouselImageShow">
+				<div class="carousel-inner">
+					<% campground.image.forEach((element, i) => { %>
+					<div class="carousel-item <%- i===0 ? 'active':'' %>">
+						<img
+							src="<%- element.url %>"
+							alt="<%- element.filename %>"
+							crossorigin="anonymous"
+							class="d-block w-100" />
+					</div>
+					<% }) %>
+				</div>
+				<% if (campground.image.length > 1) { %>
+				<button
+					type="button"
+					class="carousel-control-prev"
+					data-bs-slide="prev"
+					data-bs-target="#carouselImageShow">
+					<span
+						class="carousel-control-prev-icon"
+						aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button
+					type="button"
+					class="carousel-control-next"
+					data-bs-slide="next"
+					data-bs-target="#carouselImageShow">
+					<span
+						class="carousel-control-next-icon"
+						aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+				<% } %>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title"><%= campground.title %></h5>
+				<p class="card-text"><%= campground.description %></p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item text-muted"><%= campground.location %></li>
+				<li class="list-group-item">
+					Submitted by <%= campground.author.username %>
+				</li>
+				<li class="list-group-item">$<%= campground.price %>/night</li>
+			</ul>
+			<% if (currentUser && currentUser._id.equals(campground.author._id)) { %>
+			<div class="card-body">
+				<a
+					href="/campgrounds/<%- campground.id %>/edit"
+					class="card-link btn btn-warning"
+					>Edit Campground</a
+				>
+				<!-- d-inline untuk menjadikan form dapat menyatu dengan elemen lain
+					dalam satu line -->
+				<form
+					class="d-inline"
+					action="/campgrounds/<%- campground.id %>?_method=DELETE"
+					method="post">
+					<button class="card-link btn btn-danger">Delete Campground</button>
+				</form>
+			</div>
+			<% } %>
+			<div class="card-footer text-muted">
+				<a
+					href="/campgrounds"
+					class="card-link btn btn-info"
+					>Back to Campgrounds</a
+				>
+			</div>
+		</div>
+	</div>
+	<div class="col-6">
+		<div
+			id="cluster-map"
+			class="mb-3"></div>
+
+		<%- include('../reviews/new') %> <%- include('../reviews/index') %>
+	</div>
+</div>
+
+<script>
+	const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+	const campground = <%- JSON.stringify(campground) %>;
+</script>
+<script src="/javascripts/showMapScript.js"></script>

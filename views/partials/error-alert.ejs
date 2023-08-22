@@ -1,0 +1,19 @@
+<%- layout('layouts/boilerplate') %>
+<div class="row">
+	<div class="col-6 offset-3">
+		<div
+			class="alert alert-danger alert-dismissible"
+			role="alert">
+			<h4 class="alert-heading">Error!</h4>
+			<p><%= error.status %>: <%= error.message %></p>
+			<% if (process.env.NODE_ENV !== "production") { %>
+			<p><%= error.stack %></p>
+			<% } %>
+			<a
+				href="/campgrounds"
+				type="button"
+				class="btn-close"
+				aria-label="Close"></a>
+		</div>
+	</div>
+</div>
